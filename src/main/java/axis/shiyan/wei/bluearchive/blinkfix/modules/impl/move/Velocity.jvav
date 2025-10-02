@@ -1,0 +1,154 @@
+package axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move;
+
+import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.combat.AutoGapple;
+import de.florianmichael.viamcp.fixes.AttackOrder;
+import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import axis.shiyan.wei.bluearchive.blinkfix.events.impl.*;
+import axis.shiyan.wei.bluearchive.blinkfix.utils.ChatUtils;
+import axis.shiyan.wei.bluearchive.blinkfix.utils.RotationManager;
+import axis.shiyan.wei.bluearchive.blinkfix.utils.RotationUtils;
+import axis.shiyan.wei.bluearchive.blinkfix.utils.TimeHelper;
+import de.florianmichael.viamcp.fixes.AttackOrder;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.network.play.client.*;
+import net.minecraft.network.play.server.S08PacketPlayerPosLook;
+import net.minecraft.network.play.server.S12PacketEntityVelocity;
+import axis.shiyan.wei.bluearchive.blinkfix.events.api.EventTarget;
+import axis.shiyan.wei.bluearchive.blinkfix.events.api.types.EventType;
+import axis.shiyan.wei.bluearchive.blinkfix.modules.Category;
+import axis.shiyan.wei.bluearchive.blinkfix.modules.Module;
+import axis.shiyan.wei.bluearchive.blinkfix.modules.ModuleInfo;
+import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.combat.Aura;
+import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.misc.Disabler;
+import axis.shiyan.wei.bluearchive.blinkfix.ui.cooldown.CooldownBar;
+import axis.shiyan.wei.bluearchive.blinkfix.values.ValueBuilder;
+import axis.shiyan.wei.bluearchive.blinkfix.values.impl.BooleanValue;
+import axis.shiyan.wei.bluearchive.blinkfix.values.impl.FloatValue;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+
+import java.util.Optional;
+
+import static axis.shiyan.wei.bluearchive.blinkfix.events.api.types.Priority.*;
+
+@ModuleInfo(name = "Velocity", description = "Reduces knockback.", category = Category.MOVEMENT)
+public class Velocity extends Module {
+    private final TimeHelper disableHelper = new TimeHelper(), velocityTimer = new TimeHelper();
+    public final FloatValue skippingTicks = ValueBuilder.create(this, "Skip Ticks").setDefaultFloatValue(1).setFloatStep(1).setMinFloatValue(1f).setMaxFloatValue(3f).build().getFloatValue();
+    public final BooleanValue debugMessage = ValueBuilder.create(this, "Verbose Output").setDefaultBooleanValue(false).build().getBooleanValue();
+    public final BooleanValue onlySprint = ValueBuilder.create(this, "Sprint Only").setDefaultBooleanValue(false).build().getBooleanValue();
+    public static boolean toggle = false;
+    public static int direction = 1;
+    CooldownBar bar;
+
+    private Optional<Entity> findEntity() {
+        return mc.theWorld.loadedEntityList.stream()
+                .filter(livingBase -> mc.thePlayer.getEntityId() != livingBase.getEntityId() && livingBase instanceof EntityLivingBase)
+                .filter(livingBase -> !livingBase.isDead && ((EntityLivingBase) livingBase).getHealth() > 0 && !((EntityLivingBase) livingBase).isPlayerSleeping())
+                .filter(livingBase -> !(livingBase instanceof EntityOtherPlayerMP) || !((EntityOtherPlayerMP) livingBase).isFakePlayer())
+                .filter(livingBase -> !(livingBase instanceof EntityOtherPlayerMP) || ((EntityOtherPlayerMP) livingBase).getPlayerDeadTimer().delay(1000))
+                .filter(livingBase -> RotationUtils.getMinDistance(livingBase, RotationManager.lastRotations) < 3)
+                .findAny();
+    }
+
+    public static S12PacketEntityVelocity velocityPacket;
+
+    public static void sendLookPacket() {
+        mc.skipTicks += 1;
+        direction *= -1;
+        float playerYaw = RotationManager.rotations.x + 0.0001f * direction;
+        mc.getNetHandler().getNetworkManager().sendPacket(new C03PacketPlayer.C05PacketPlayerLook(playerYaw, RotationManager.rotations.y, mc.thePlayer.onGround));
+    }
+
+    @EventTarget(HIGHEST)
+    public void onPacket(EventPacket e) {
+        if (mc.thePlayer != null && e.getType() == EventType.RECEIVE && !e.isCancelled()) {
+            if (e.getPacket() instanceof S12PacketEntityVelocity) {
+                S12PacketEntityVelocity packet = (S12PacketEntityVelocity) e.getPacket();
+                if (packet.getEntityID() == mc.thePlayer.getEntityId()) {
+                    double x = packet.getMotionX() / 8000D;
+                    double z = packet.getMotionZ() / 8000D;
+                    double speed = Math.sqrt(x * x + z * z);
+
+                    if (mc.thePlayer.isInWeb || mc.thePlayer.isInWater() || mc.thePlayer.isInLava() || mc.thePlayer.isOnLadder()) {
+                        if (debugMessage.getCurrentValue()) {
+                            ChatUtils.addChatMessage("Ignore: Player is in Web\\Water\\Lava\\Ladder!");
+                        }
+                    } else if (!disableHelper.delay(1000)) {
+                        if (debugMessage.getCurrentValue()) {
+                            ChatUtils.addChatMessage("Ignore: Player just flagged!");
+                        }
+                    } else if (speed < 0.1) {
+                        if (debugMessage.getCurrentValue()) {
+                            ChatUtils.addChatMessage("Ignore: Speed is too low!");
+                        }
+                    } else if (onlySprint.getCurrentValue() && !mc.thePlayer.serverSprintState) {
+                        if (debugMessage.getCurrentValue()) {
+                            ChatUtils.addChatMessage("Ignore: You are not sprinting!");
+                        }
+                    } else if (Disabler.disabled) {
+                        Aura aura = (Aura) BlinkFix.getInstance().getModuleManager().getModule(Aura.class);
+
+                        if (aura.isEnabled() && Aura.target != null) {
+                            velocityPacket = packet;
+                            e.setCancelled(true);
+                            return;
+                        }
+
+                        Optional<Entity> any = findEntity();
+
+                        if (any.isPresent()) {
+                            velocityTimer.reset();
+                            Entity entity = any.get();
+                            e.setCancelled(true);
+
+                            boolean needSprint = !mc.thePlayer.serverSprintState;
+
+                            if (needSprint) {
+                                packet.setToggleSprint(true);
+                                mc.getNetHandler().getNetworkManager().sendPacket(new C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.START_SPRINTING));
+
+                                int currentValue = (int) skippingTicks.getCurrentValue();
+                                if (!BlinkFix.getInstance().getModuleManager().getModule(AutoGapple.class).isEnabled()) {
+
+                                    for (int i = 0; i < currentValue; i++) {
+                                        sendLookPacket();
+                                    }
+                                }
+                            }
+
+                            for (int i = 0; i < 8; i++) {
+                                AttackOrder.sendFixedAttack(mc.thePlayer, entity);
+                            }
+
+                            x *= Math.pow(0.6, 5);
+                            z *= Math.pow(0.6, 5);
+
+                            if (needSprint) {
+                                toggle = true;
+                                mc.getNetHandler().getNetworkManager().sendPacket(new C0BPacketEntityAction(mc.thePlayer, C0BPacketEntityAction.Action.STOP_SPRINTING));
+                            }
+
+                            packet.setMotionX((int) (x * 8000));
+                            packet.setMotionZ((int) (z * 8000));
+                            packet.setModified(true);
+
+                            velocityPacket = packet;
+                        }
+                    }
+                }
+            }
+
+            if (e.getPacket() instanceof S08PacketPlayerPosLook && !velocityTimer.delay(500)) {
+                if (bar == null || bar.isExpired()) {
+                    bar = new CooldownBar(1000, "Velocity Temporarily Disabled");
+                    BlinkFix.getInstance().getCooldownBarManager().addBar(bar);
+                } else {
+                    bar.setCreateTime(System.currentTimeMillis());
+                }
+                disableHelper.reset();
+            }
+        }
+    }
+}

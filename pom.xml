@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>tech.naven</groupId>
+    <artifactId>Naven</artifactId>
+    <version>1.8.9</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>package</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.commons</groupId>
+                        <artifactId>commons-lang3</artifactId>
+                        <version>3.12.0</version>
+                        <executions>
+                            <execution>
+                                <id>timestamp-property</id>
+                                <goals>
+                                    <goal>timestamp-property</goal>
+                                </goals>
+                                <configuration>
+                                    <name>naven.build.time</name>
+                                    <pattern>yyMMdd-HHmm</pattern>
+                                    <locale>zh_CN</locale>
+                                    <timeZone>GMT+8</timeZone>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <target>
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java"
+                                              message="package moe.ichinomiya.naven;${line.separator}${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="import com.soterdev.SoterObfuscator;${line.separator}${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="public final class Version {${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="    private final static Version INSTANCE = new Version();${line.separator}${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="    public static String getVersion() {${line.separator}        return INSTANCE.getBuildDate();${line.separator}    }${line.separator}${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="    @SoterObfuscator.Obfuscation(flags = &quot;+native,+encstr&quot;)${line.separator}"/>
+
+                                        <!--suppress UnresolvedMavenProperty -->
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="    private String getBuildDate() {${line.separator}        return &quot;${naven.build.time}&quot;;    ${line.separator}    }${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="}"/>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                        <includes>
+                            <include>naven.build</include>
+                            <include>pack.png</include>
+                            <include>log4j2.xml</include>
+                        </includes>
+                        <excludes>
+                            <exclude>assets/*/*.*</exclude>
+                        </excludes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+
+        <profile>
+            <id>run</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <target>
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java"
+                                              message="package moe.ichinomiya.naven;${line.separator}${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="public final class Version {${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="    public static String getVersion() {${line.separator}        return &quot;Developer Build&quot;;${line.separator}    }${line.separator}"/>
+
+                                        <echo file="${project.build.sourceDirectory}/moe/ichinomiya/naven/Version.java" append="true"
+                                              message="}"/>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>false</filtering>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>marcloud-development-repository</id>
+            <name>marCloud-Repository</name>
+            <url>https://repo.marcloud.net/</url>
+        </repository>
+
+        <repository>
+            <id>projectlombok.org</id>
+            <url>https://projectlombok.org/edge-releases</url>
+        </repository>
+
+        <repository>
+            <id>dev-auth-repository</id>
+            <name>DevAuth</name>
+            <url>https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.0.23.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.jopt-simple</groupId>
+            <artifactId>jopt-simple</artifactId>
+            <version>4.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>lwjgl</artifactId>
+            <version>2.9.4-nightly</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.lwjgl</groupId>
+            <artifactId>util</artifactId>
+            <version>2.9.4-nightly</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.java.jinput</groupId>
+            <artifactId>jinput</artifactId>
+            <version>2.0.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>icu4j-core-mojang</artifactId>
+            <version>51.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.oshi</groupId>
+            <artifactId>oshi-core</artifactId>
+            <version>6.8.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.java.jutils</groupId>
+            <artifactId>jutils</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.1.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>17.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paulscode.sound</groupId>
+            <artifactId>libraryjavasound</artifactId>
+            <version>20101123</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paulscode.sound</groupId>
+            <artifactId>codecwav</artifactId>
+            <version>20101023</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paulscode.sound</groupId>
+            <artifactId>soundsystem</artifactId>
+            <version>20120107</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paulscode.sound</groupId>
+            <artifactId>codecjorbis</artifactId>
+            <version>20101023</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.paulscode.sound</groupId>
+            <artifactId>librarylwjglopenal</artifactId>
+            <version>20100824</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>1.5.21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>edge-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.java-websocket</groupId>
+            <artifactId>Java-WebSocket</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>5.17.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna-platform</artifactId>
+            <version>5.17.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>me.djtheredstoner</groupId>
+            <artifactId>DevAuth-common</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/snakeyaml-2.2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.viaversion</groupId>
+            <artifactId>viabackwards</artifactId>
+            <version>4.9.2.3-Naven</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ViaBackwards-4.9.2.3-Naven.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.viaversion</groupId>
+            <artifactId>viarewind</artifactId>
+            <version>3.0.6.2-Naven</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ViaRewind-3.0.6.2-Naven.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv</artifactId>
+            <version>1.5.6</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/javacv-1.5.6.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.viaversion</groupId>
+            <artifactId>viaversion</artifactId>
+            <version>4.9.3.2-Naven</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/ViaVersion-4.9.3.2-Naven.jar</systemPath>
+        </dependency>
+    </dependencies>
+</project>
