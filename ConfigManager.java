@@ -1,3 +1,4 @@
+//ai code的配置系统，加的话记得把路径引用改了，同时添加json依赖“https://repo1.maven.org/maven2/org/json/json/20240303/json-20240303.jar”，Manager不知道放哪里了，随便放的......
 package com.BlueArchive.Sunaookami.Shiroko.Yukari.config;
 
 import com.BlueArchive.Sunaookami.Shiroko.Yukari.Yukari;
@@ -318,4 +319,5 @@ public class ConfigManager {
 
         return configs.toArray(new String[0]);
     }
+
 }
