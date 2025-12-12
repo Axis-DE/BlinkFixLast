@@ -1,11 +1,11 @@
 package net.minecraft.client.renderer.entity;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.collect.Lists;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.types.EventType;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRendererLivingEntity;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRotationAnimation;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.NameTags;
+import moe.ichinomiya.naven.events.api.types.EventType;
+import moe.ichinomiya.naven.events.impl.EventRendererLivingEntity;
+import moe.ichinomiya.naven.events.impl.EventRotationAnimation;
+import moe.ichinomiya.naven.modules.impl.render.NameTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;

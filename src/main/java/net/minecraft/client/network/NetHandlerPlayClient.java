@@ -1,14 +1,14 @@
 package net.minecraft.client.network;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.mojang.authlib.GameProfile;
 import de.florianmichael.vialoadingbase.ViaLoadingBase;
 import lombok.extern.log4j.Log4j2;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.types.EventType;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRespawn;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventSpawnPlayer;
+import moe.ichinomiya.naven.events.api.types.EventType;
+import moe.ichinomiya.naven.events.impl.EventRespawn;
+import moe.ichinomiya.naven.events.impl.EventSpawnPlayer;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.GuardianSound;

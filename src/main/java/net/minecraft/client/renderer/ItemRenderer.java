@@ -1,9 +1,9 @@
 package net.minecraft.client.renderer;
 
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.combat.Aura;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.BlockAnimation;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.AnimationUtils;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.MathUtils;
+import moe.ichinomiya.naven.modules.impl.combat.Aura;
+import moe.ichinomiya.naven.modules.impl.render.BlockAnimation;
+import moe.ichinomiya.naven.utils.AnimationUtils;
+import moe.ichinomiya.naven.utils.MathUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

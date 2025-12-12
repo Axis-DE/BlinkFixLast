@@ -1,6 +1,6 @@
 package net.minecraft.client.network;
 
-import axis.shiyan.wei.bluearchive.blinkfix.ui.AltManager.NetEaseAltManager.GuiAltManager;
+import moe.ichinomiya.naven.ui.AltManager.NetEaseAltManager.GuiAltManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ThreadLanServerPing;
 import org.apache.logging.log4j.LogManager;

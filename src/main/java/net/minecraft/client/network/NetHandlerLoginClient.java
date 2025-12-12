@@ -5,9 +5,9 @@ import com.mojang.authlib.exceptions.AuthenticationException;
 import com.mojang.authlib.exceptions.AuthenticationUnavailableException;
 import com.mojang.authlib.exceptions.InvalidCredentialsException;
 import com.mojang.authlib.minecraft.MinecraftSessionService;
-import dev.yalan.live.LiveClient;
-import dev.yalan.live.netty.LiveProto;
-import axis.shiyan.wei.bluearchive.blinkfix.ui.AltManager.NetEaseAltManager.GuiAltManager;
+//import dev.yalan.live.LiveClient;
+//import dev.yalan.live.netty.LiveProto;
+import moe.ichinomiya.naven.ui.AltManager.NetEaseAltManager.GuiAltManager;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import net.minecraft.client.Minecraft;
@@ -59,14 +59,14 @@ public class NetHandlerLoginClient implements INetHandlerLoginClient {
         if (this.mc.getCurrentServerData() != null && this.mc.getCurrentServerData().isOnLAN()) {
             if (GuiAltManager.currentProxyServer != null){
                 logger.info("Attempting to encrypt server: " + s1);
-                LiveClient.INSTANCE.sendPacket(LiveProto.createJoinNeteaseServer(
-                        GuiAltManager.currentProxyServer.neteaseAccount.authInfo.entity.entity_id,
-                        GuiAltManager.currentProxyServer.neteaseAccount.authInfo.entity.token,
-                        s1,
-                        GuiAltManager.currentProxyServer.serverId,
-                        GuiAltManager.currentProxyServer.serverVersion,
-                        GuiAltManager.currentProxyServer.modHashList
-                ));
+//                LiveClient.INSTANCE.sendPacket(LiveProto.createJoinNeteaseServer(
+//                        GuiAltManager.currentProxyServer.neteaseAccount.authInfo.entity.entity_id,
+//                        GuiAltManager.currentProxyServer.neteaseAccount.authInfo.entity.token,
+//                        s1,
+//                        GuiAltManager.currentProxyServer.serverId,
+//                        GuiAltManager.currentProxyServer.serverVersion,
+//                        GuiAltManager.currentProxyServer.modHashList
+//                ));
 
                 lock.lock();
 

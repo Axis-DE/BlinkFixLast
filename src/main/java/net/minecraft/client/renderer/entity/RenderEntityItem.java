@@ -1,10 +1,10 @@
 package net.minecraft.client.renderer.entity;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.types.EventType;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRendererLivingEntity;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.ItemPhysics;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.TimeHelper;
+import moe.ichinomiya.naven.BlinkFix;
+import moe.ichinomiya.naven.events.api.types.EventType;
+import moe.ichinomiya.naven.events.impl.EventRendererLivingEntity;
+import moe.ichinomiya.naven.modules.impl.render.ItemPhysics;
+import moe.ichinomiya.naven.utils.TimeHelper;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;

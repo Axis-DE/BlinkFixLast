@@ -1,9 +1,9 @@
 package net.minecraft.item;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.collect.Multimap;
 import lombok.Getter;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.misc.OffhandFeatures;
+import moe.ichinomiya.naven.modules.impl.misc.OffhandFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;

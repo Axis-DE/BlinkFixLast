@@ -1,11 +1,11 @@
 package net.minecraft.client.gui;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.*;
-import axis.shiyan.wei.bluearchive.blinkfix.ui.AltManager.GuiAltMenu;
-import axis.shiyan.wei.bluearchive.blinkfix.ui.button.MainMenuButton;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.font.FontManager;
-import dev.yalan.live.LiveClient;
+import moe.ichinomiya.naven.BlinkFix;
+import moe.ichinomiya.naven.ui.AltManager.GuiAltMenu;
+import moe.ichinomiya.naven.ui.button.MainMenuButton;
+import moe.ichinomiya.naven.utils.*;
+import moe.ichinomiya.naven.utils.font.FontManager;
+//import dev.yalan.live.LiveClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bytedeco.javacv.FrameGrabber;
@@ -13,7 +13,7 @@ import org.bytedeco.javacv.FrameGrabber;
 import java.io.IOException;
 import java.util.*;
 
-import static axis.shiyan.wei.bluearchive.blinkfix.BlinkFix.CLIENT_DISPLAY_NAME;
+import static moe.ichinomiya.naven.BlinkFix.CLIENT_DISPLAY_NAME;
 
 public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
     private static final Logger logger = LogManager.getLogger();
@@ -34,10 +34,10 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback {
     List<MainMenuButton> buttons = new ArrayList<>();
 
     public void initGui() {
-        if (LiveClient.INSTANCE.loginIndex1.get() + LiveClient.INSTANCE.loginIndex2.get() != 20250805) {
+//        if (LiveClient.INSTANCE.loginIndex1.get() + LiveClient.INSTANCE.loginIndex2.get() != 20250805) {
 //            mc.shutdown();
 //            return;
-        }
+//        }
         buttons.clear();
         buttons.add(new MainMenuButton(1, "Single Player", () -> mc.displayGuiScreen(new GuiSelectWorld(this))));
         buttons.add(new MainMenuButton(2, "Multi Player", () -> mc.displayGuiScreen(new GuiMultiplayer(this))));

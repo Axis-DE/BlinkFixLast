@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.chunk;
 
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.XRay;
+import moe.ichinomiya.naven.modules.impl.render.XRay;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IntegerCache;

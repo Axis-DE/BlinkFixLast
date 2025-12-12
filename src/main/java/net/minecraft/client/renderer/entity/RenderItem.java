@@ -1,6 +1,6 @@
 package net.minecraft.client.renderer.entity;
 
-import axis.shiyan.wei.bluearchive.blinkfix.utils.font.BaseFontRender;
+import moe.ichinomiya.naven.utils.font.BaseFontRender;
 import net.minecraft.block.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.*;

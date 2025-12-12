@@ -1,8 +1,8 @@
 package net.minecraft.client.renderer.entity;
 
 import com.google.common.collect.Maps;
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRenderEntity;
+import moe.ichinomiya.naven.BlinkFix;
+import moe.ichinomiya.naven.events.impl.EventRenderEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.state.IBlockState;

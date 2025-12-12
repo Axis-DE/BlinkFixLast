@@ -1,8 +1,8 @@
 package net.minecraft.block;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventBondingBoxSet;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.XRay;
+import moe.ichinomiya.naven.BlinkFix;
+import moe.ichinomiya.naven.events.impl.EventBondingBoxSet;
+import moe.ichinomiya.naven.modules.impl.render.XRay;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockState;

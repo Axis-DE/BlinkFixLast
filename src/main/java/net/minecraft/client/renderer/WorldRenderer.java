@@ -1,8 +1,8 @@
 package net.minecraft.client.renderer;
 
 import com.google.common.primitives.Floats;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.XRay;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.RenderUtils;
+import moe.ichinomiya.naven.modules.impl.render.XRay;
+import moe.ichinomiya.naven.utils.RenderUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;

@@ -1,6 +1,6 @@
 package net.minecraft.potion;
 
-import axis.shiyan.wei.bluearchive.blinkfix.utils.SmoothAnimationTimer;
+import moe.ichinomiya.naven.utils.SmoothAnimationTimer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import org.apache.logging.log4j.LogManager;

@@ -1,19 +1,19 @@
 package net.minecraft.entity.player;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.mojang.authlib.GameProfile;
 import de.florianmichael.vialoadingbase.ViaLoadingBase;
-import dev.yalan.live.LiveClient;
-import dev.yalan.live.LiveUser;
-import dev.yalan.live.netty.LiveProto;
+//import dev.yalan.live.LiveClient;
+//import dev.yalan.live.LiveUser;
+//import dev.yalan.live.netty.LiveProto;
 import lombok.Getter;
 import lombok.Setter;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.combat.KeepSprint;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.MoveUtils;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.SmoothAnimationTimer;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.TimeHelper;
+import moe.ichinomiya.naven.modules.impl.combat.KeepSprint;
+import moe.ichinomiya.naven.utils.MoveUtils;
+import moe.ichinomiya.naven.utils.SmoothAnimationTimer;
+import moe.ichinomiya.naven.utils.TimeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockDirectional;
@@ -96,8 +96,8 @@ public abstract class EntityPlayer extends EntityLivingBase {
     private final TimeHelper playerDeadTimer = new TimeHelper();
 
     public int autoBlockVl, noSlowVl, autoClickerVl, throwItemVl;
-
-    public LiveUser liveUser;
+//
+//    public LiveUser liveUser;
 
     private boolean hasQueriedLiveUser;
 
@@ -299,7 +299,7 @@ public abstract class EntityPlayer extends EntityLivingBase {
 
             if (!hasQueriedLiveUser || ticksExisted % 200 == 0) {
                 hasQueriedLiveUser = true;
-                LiveClient.INSTANCE.sendPacket(LiveProto.createQueryMinecraftProfile(getUniqueID()));
+//                LiveClient.INSTANCE.sendPacket(LiveProto.createQueryMinecraftProfile(getUniqueID()));
             }
         }
 

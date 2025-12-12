@@ -1,6 +1,6 @@
 package net.minecraft.network;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.collect.Queues;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.viaversion.viarewind.protocol.protocol1_8to1_9.Protocol1_8To1_9;
@@ -33,11 +33,11 @@ import io.netty.handler.timeout.TimeoutException;
 import io.netty.util.AttributeKey;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.types.EventType;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventDispatchPacket;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventGlobalPacket;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventHigherPacketSend;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventPacket;
+import moe.ichinomiya.naven.events.api.types.EventType;
+import moe.ichinomiya.naven.events.impl.EventDispatchPacket;
+import moe.ichinomiya.naven.events.impl.EventGlobalPacket;
+import moe.ichinomiya.naven.events.impl.EventHigherPacketSend;
+import moe.ichinomiya.naven.events.impl.EventPacket;
 import net.minecraft.network.play.client.*;
 import net.minecraft.util.*;
 import org.apache.commons.lang3.ArrayUtils;

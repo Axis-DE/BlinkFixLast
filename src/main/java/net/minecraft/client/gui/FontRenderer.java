@@ -3,7 +3,7 @@ package net.minecraft.client.gui;
 import com.ibm.icu.text.ArabicShaping;
 import com.ibm.icu.text.ArabicShapingException;
 import com.ibm.icu.text.Bidi;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.font.BaseFontRender;
+import moe.ichinomiya.naven.utils.font.BaseFontRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;

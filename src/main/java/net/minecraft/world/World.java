@@ -6,7 +6,7 @@ import com.google.common.collect.Sets;
 import de.florianmichael.viamcp.fixes.FixedSoundEngine;
 import lombok.Getter;
 import me.jellysquid.mods.phosphor.mod.world.lighting.LightingEngine;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move.NoLiquid;
+import moe.ichinomiya.naven.modules.impl.move.NoLiquid;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

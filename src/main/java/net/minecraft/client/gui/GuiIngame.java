@@ -1,18 +1,18 @@
 package net.minecraft.client.gui;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.EventTarget;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRender2D;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRenderUI;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventShader;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.NoTitle;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.RenderUtils;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.StencilUtils;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.font.BaseFontRender;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.font.GlyphPageFontRenderer;
+import moe.ichinomiya.naven.events.api.EventTarget;
+import moe.ichinomiya.naven.events.impl.EventRender2D;
+import moe.ichinomiya.naven.events.impl.EventRenderUI;
+import moe.ichinomiya.naven.events.impl.EventShader;
+import moe.ichinomiya.naven.modules.impl.render.NoTitle;
+import moe.ichinomiya.naven.utils.RenderUtils;
+import moe.ichinomiya.naven.utils.StencilUtils;
+import moe.ichinomiya.naven.utils.font.BaseFontRender;
+import moe.ichinomiya.naven.utils.font.GlyphPageFontRenderer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -457,7 +457,7 @@ public class GuiIngame extends Gui {
 
     private void renderScoreboard(ScoreObjective objective, ScaledResolution scaledRes) {
         GlyphPageFontRenderer siyuan16 = BlinkFix.getInstance().getFontManager().siyuan16;
-        axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.Scoreboard module = (axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.Scoreboard) BlinkFix.getInstance().getModuleManager().getModule(axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.Scoreboard.class);
+        moe.ichinomiya.naven.modules.impl.render.Scoreboard module = (moe.ichinomiya.naven.modules.impl.render.Scoreboard) BlinkFix.getInstance().getModuleManager().getModule(moe.ichinomiya.naven.modules.impl.render.Scoreboard.class);
         modern = module.isEnabled() && module.modernStyle.getCurrentValue();
 
         Scoreboard scoreboard = objective.getScoreboard();

@@ -1,19 +1,19 @@
 package net.minecraft.entity;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Maps;
 import de.florianmichael.vialoadingbase.ViaLoadingBase;
-import axis.shiyan.wei.bluearchive.blinkfix.events.EventLivingUpdate;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.EventManager;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventJump;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventMotionCalculate;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.combat.AutoGapple;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move.NoJumpDelay;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move.NoLiquid;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.BlockAnimation;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.FullBright;
+import moe.ichinomiya.naven.BlinkFix;
+import moe.ichinomiya.naven.events.EventLivingUpdate;
+import moe.ichinomiya.naven.events.api.EventManager;
+import moe.ichinomiya.naven.events.impl.EventJump;
+import moe.ichinomiya.naven.events.impl.EventMotionCalculate;
+import moe.ichinomiya.naven.modules.impl.combat.AutoGapple;
+import moe.ichinomiya.naven.modules.impl.move.NoJumpDelay;
+import moe.ichinomiya.naven.modules.impl.move.NoLiquid;
+import moe.ichinomiya.naven.modules.impl.render.BlockAnimation;
+import moe.ichinomiya.naven.modules.impl.render.FullBright;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -1124,8 +1124,9 @@ public abstract class EntityLivingBase extends Entity {
 
     public void moveEntityWithHeading(float strafe, float forward) {
         if (this == Minecraft.getMinecraft().thePlayer) {
-            if (BlinkFix.getInstance().getModuleManager().getModule(AutoGapple.class).isEnabled() && AutoGapple.cancelmove) {
-                if (Minecraft.getMinecraft().thePlayer.positionUpdateTicks < 19 && !AutoGapple.velocityed) {
+            AutoGapple gapple = (AutoGapple) BlinkFix.getInstance().getModuleManager().getModule(AutoGapple.class);
+            if (gapple.eating) {
+                if (Minecraft.getMinecraft().thePlayer.positionUpdateTicks < 19 && !gapple.velocityed && gapple.stuck.getCurrentValue()) {
                     return;
                 } else if (AutoGapple.velocityed) {
                     AutoGapple.velocityed = false;

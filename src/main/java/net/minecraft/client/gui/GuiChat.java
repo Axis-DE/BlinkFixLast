@@ -1,10 +1,10 @@
 package net.minecraft.client.gui;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.collect.Lists;
-import axis.shiyan.wei.bluearchive.blinkfix.commands.Command;
-import axis.shiyan.wei.bluearchive.blinkfix.commands.CommandManager;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.Widget;
+import moe.ichinomiya.naven.commands.Command;
+import moe.ichinomiya.naven.commands.CommandManager;
+import moe.ichinomiya.naven.modules.impl.render.Widget;
 import net.minecraft.network.play.client.C14PacketTabComplete;
 import net.minecraft.util.*;
 import org.apache.commons.lang3.StringUtils;

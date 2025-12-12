@@ -1,7 +1,6 @@
 package net.minecraft.client;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.*;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Queues;
@@ -14,15 +13,16 @@ import com.mojang.authlib.minecraft.MinecraftSessionService;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import de.florianmichael.viamcp.fixes.AttackOrder;
-import dev.yalan.live.LiveClient;
-import dev.yalan.live.gui.GuiAuthentication;
-import dev.yalan.live.netty.LiveProto;
+//import dev.yalan.live.LiveClient;
+//import dev.yalan.live.gui.GuiAuthentication;
+//import dev.yalan.live.netty.LiveProto;
 import lombok.Getter;
 import lombok.Setter;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.EventManager;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.types.EventType;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.misc.OffhandFeatures;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.AnimationUtils;
+import moe.ichinomiya.naven.events.api.EventManager;
+import moe.ichinomiya.naven.events.api.types.EventType;
+import moe.ichinomiya.naven.events.impl.*;
+import moe.ichinomiya.naven.modules.impl.misc.OffhandFeatures;
+import moe.ichinomiya.naven.utils.AnimationUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -453,8 +453,8 @@ public class Minecraft implements IThreadListener {
             throw new RuntimeException(e);
         }
 
-        this.displayGuiScreen(new GuiAuthentication());
-//        this.displayGuiScreen(new GuiMainMenu());
+//        this.displayGuiScreen(new GuiAuthentication());
+        this.displayGuiScreen(new GuiMainMenu());
 
         this.renderEngine.deleteTexture(this.mojangLogo);
         this.mojangLogo = null;
@@ -801,12 +801,12 @@ public class Minecraft implements IThreadListener {
 
             this.mcSoundHandler.unloadSounds();
 
-            if (LiveClient.INSTANCE != null && LiveClient.INSTANCE.crashMessage.get() != null) {
-                final JFrame frame = new JFrame();
-                frame.setAlwaysOnTop(true);
-
-                JOptionPane.showMessageDialog(frame, LiveClient.INSTANCE.crashMessage.get());
-            }
+//            if (LiveClient.INSTANCE != null && LiveClient.INSTANCE.crashMessage.get() != null) {
+//                final JFrame frame = new JFrame();
+//                frame.setAlwaysOnTop(true);
+//
+//                JOptionPane.showMessageDialog(frame, LiveClient.INSTANCE.crashMessage.get());
+//            }
         } finally {
             Display.destroy();
 
@@ -1841,7 +1841,7 @@ public class Minecraft implements IThreadListener {
     }
 
     public void loadWorld(WorldClient worldClientIn, String loadingMessage) {
-        LiveClient.INSTANCE.liveComponent.onWorldLoad();
+
 
         // Patcher
         if (worldClientIn != this.theWorld) {
@@ -1913,12 +1913,7 @@ public class Minecraft implements IThreadListener {
         this.systemTime = 0L;
 
         if (worldClientIn == null) {
-            LiveClient.INSTANCE.sendPacket(LiveProto.createRemoveMinecraftProfile());
         } else if (!isSingleplayer() && thePlayer != null) {
-            LiveClient.INSTANCE.sendPacket(LiveProto.createUpdateMinecraftProfile(
-                    thePlayer.getUniqueID(),
-                    thePlayer.getName()
-            ));
         }
     }
 

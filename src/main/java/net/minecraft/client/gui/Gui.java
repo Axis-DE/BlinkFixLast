@@ -12,7 +12,7 @@ public class Gui {
     public static final ResourceLocation statIcons = new ResourceLocation("textures/gui/container/stats_icons.png");
     public static final ResourceLocation icons = new ResourceLocation("textures/gui/icons.png");
     protected float zLevel;
-
+    private int frame;
     protected void drawHorizontalLine(int startX, int endX, int y, int color) {
         if (endX < startX) {
             int i = startX;
@@ -163,5 +163,9 @@ public class Gui {
         worldrenderer.pos(x + width, y, 0.0D).tex((u + (float) uWidth) * f, v * f1).endVertex();
         worldrenderer.pos(x, y, 0.0D).tex(u * f, v * f1).endVertex();
         tessellator.draw();
+    }
+
+    public void tick() {
+        ++this.frame;
     }
 }

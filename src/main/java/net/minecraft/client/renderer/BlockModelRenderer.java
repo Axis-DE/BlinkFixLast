@@ -1,8 +1,8 @@
 package net.minecraft.client.renderer;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRenderBlock;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.XRay;
+import moe.ichinomiya.naven.BlinkFix;
+import moe.ichinomiya.naven.events.impl.EventRenderBlock;
+import moe.ichinomiya.naven.modules.impl.render.XRay;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

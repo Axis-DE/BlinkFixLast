@@ -1,9 +1,9 @@
 package net.minecraft.client.entity;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import com.mojang.authlib.GameProfile;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventLook;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move.Scaffold;
+import moe.ichinomiya.naven.events.impl.EventLook;
+import moe.ichinomiya.naven.modules.impl.move.Scaffold;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.ImageBufferDownload;

@@ -1,6 +1,6 @@
 package net.minecraft.block;
 
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.render.XRay;
+import moe.ichinomiya.naven.modules.impl.render.XRay;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockState;

@@ -1,14 +1,14 @@
 package net.minecraft.entity;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import de.florianmichael.vialoadingbase.ViaLoadingBase;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventMove;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventRayTrace;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventStep;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventStrafe;
+import moe.ichinomiya.naven.events.impl.EventMove;
+import moe.ichinomiya.naven.events.impl.EventRayTrace;
+import moe.ichinomiya.naven.events.impl.EventStep;
+import moe.ichinomiya.naven.events.impl.EventStrafe;
 import lombok.Getter;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.types.EventType;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move.FastWeb;
+import moe.ichinomiya.naven.events.api.types.EventType;
+import moe.ichinomiya.naven.modules.impl.move.FastWeb;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

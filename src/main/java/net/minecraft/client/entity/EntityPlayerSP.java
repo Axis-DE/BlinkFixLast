@@ -1,17 +1,17 @@
 package net.minecraft.client.entity;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.combat.AutoGapple;
+import moe.ichinomiya.naven.modules.impl.combat.AutoGapple;
 import de.florianmichael.vialoadingbase.ViaLoadingBase;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.types.EventType;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventMotion;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventSlowdown;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventUpdate;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move.NoSlow;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move.Stuck;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.move.Velocity;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.ChatUtils;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.RotationUtils;
+import moe.ichinomiya.naven.BlinkFix;
+import moe.ichinomiya.naven.events.api.types.EventType;
+import moe.ichinomiya.naven.events.impl.EventMotion;
+import moe.ichinomiya.naven.events.impl.EventSlowdown;
+import moe.ichinomiya.naven.events.impl.EventUpdate;
+import moe.ichinomiya.naven.modules.impl.move.NoSlow;
+import moe.ichinomiya.naven.modules.impl.move.Stuck;
+import moe.ichinomiya.naven.modules.impl.move.Velocity;
+import moe.ichinomiya.naven.utils.ChatUtils;
+import moe.ichinomiya.naven.utils.RotationUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -152,7 +152,7 @@ public class EntityPlayerSP extends AbstractClientPlayer {
         boolean flag = this.isSprinting();
 
         if (flag != this.serverSprintState) {
-            if (Velocity.toggle && !BlinkFix.getInstance().getModuleManager().getModule(AutoGapple.class).isEnabled()) {
+            if (Velocity.toggle) {
                 Velocity.sendLookPacket();
             }
 
@@ -583,8 +583,8 @@ public class EntityPlayerSP extends AbstractClientPlayer {
 
         EventSlowdown slowdownEvent = new EventSlowdown(0.2, this.isUsingItem() && !this.isRiding());
         BlinkFix.getInstance().getEventManager().call(slowdownEvent);
-
-        if (slowdownEvent.isSlowdown())
+        AutoGapple gapple = (AutoGapple) BlinkFix.getInstance().getModuleManager().getModule(AutoGapple.class);
+        if (slowdownEvent.isSlowdown()|| gapple.eating)
         {
             this.movementInput.moveStrafe *= (float) slowdownEvent.getSpeed();
             this.movementInput.moveForward *= (float) slowdownEvent.getSpeed();

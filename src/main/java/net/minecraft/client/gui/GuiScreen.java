@@ -1,16 +1,16 @@
 package net.minecraft.client.gui;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.utils.*;
+import moe.ichinomiya.naven.BlinkFix;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import axis.shiyan.wei.bluearchive.blinkfix.events.api.EventTarget;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventClientChat;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventShader;
-import axis.shiyan.wei.bluearchive.blinkfix.protocols.germ.GermMod;
-import axis.shiyan.wei.bluearchive.blinkfix.protocols.germ.GermPacketUtils;
-import axis.shiyan.wei.bluearchive.blinkfix.protocols.germ.Packets;
+import moe.ichinomiya.naven.events.api.EventTarget;
+import moe.ichinomiya.naven.events.impl.EventClientChat;
+import moe.ichinomiya.naven.events.impl.EventShader;
+import moe.ichinomiya.naven.protocols.HuaYuTing.germ.GermMod;
+import moe.ichinomiya.naven.protocols.HuaYuTing.germ.GermPacketUtils;
+import moe.ichinomiya.naven.protocols.HuaYuTing.germ.Packets;
+import moe.ichinomiya.naven.utils.TimeHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -52,7 +52,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import static axis.shiyan.wei.bluearchive.blinkfix.BlinkFix.videoPlayer;
+import static moe.ichinomiya.naven.BlinkFix.videoPlayer;
 
 public abstract class GuiScreen extends Gui implements GuiYesNoCallback {
     private static final Logger LOGGER = LogManager.getLogger();

@@ -1,9 +1,9 @@
 package net.minecraft.world.chunk.storage;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
+import moe.ichinomiya.naven.BlinkFix;
 import me.jellysquid.mods.phosphor.mod.world.lighting.LightingHooks;
-import axis.shiyan.wei.bluearchive.blinkfix.protocols.world.ChunkFileManager;
-import axis.shiyan.wei.bluearchive.blinkfix.protocols.world.Wrapper;
+import moe.ichinomiya.naven.protocols.HuaYuTing.world.ChunkFileManager;
+import moe.ichinomiya.naven.protocols.HuaYuTing.world.Wrapper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;

@@ -4,10 +4,10 @@ import com.google.common.base.Objects;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
-import axis.shiyan.wei.bluearchive.blinkfix.protocols.MythProtocol;
-import dev.yalan.live.LiveClient;
-import dev.yalan.live.LiveUser;
-import dev.yalan.live.netty.LiveProto;
+import moe.ichinomiya.naven.protocols.HuaYuTing.MythProtocol;
+//import dev.yalan.live.LiveClient;
+//import dev.yalan.live.LiveUser;
+//import dev.yalan.live.netty.LiveProto;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.client.resources.SkinManager;
@@ -34,12 +34,12 @@ public class NetworkPlayerInfo {
     private long field_178868_l = 0L;
     private long field_178869_m = 0L;
 
-    public LiveUser liveUser;
+//    public LiveUser liveUser;
 
     public NetworkPlayerInfo(GameProfile p_i46294_1_) {
         this.gameProfile = p_i46294_1_;
-
-        LiveClient.INSTANCE.sendPacket(LiveProto.createQueryMinecraftProfile(p_i46294_1_));
+//
+//        LiveClient.INSTANCE.sendPacket(LiveProto.createQueryMinecraftProfile(p_i46294_1_));
     }
 
     public NetworkPlayerInfo(S38PacketPlayerListItem.AddPlayerData p_i46295_1_) {
@@ -48,7 +48,7 @@ public class NetworkPlayerInfo {
         this.responseTime = p_i46295_1_.getPing();
         this.displayName = p_i46295_1_.getDisplayName();
 
-        LiveClient.INSTANCE.sendPacket(LiveProto.createQueryMinecraftProfile(p_i46295_1_.getProfile()));
+//        LiveClient.INSTANCE.sendPacket(LiveProto.createQueryMinecraftProfile(p_i46295_1_.getProfile()));
     }
 
     public GameProfile getGameProfile() {

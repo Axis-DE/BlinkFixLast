@@ -1,7 +1,7 @@
 package net.minecraft.util;
 
-import axis.shiyan.wei.bluearchive.blinkfix.BlinkFix;
-import axis.shiyan.wei.bluearchive.blinkfix.events.impl.EventMoveInput;
+import moe.ichinomiya.naven.BlinkFix;
+import moe.ichinomiya.naven.events.impl.EventMoveInput;
 import net.minecraft.client.settings.GameSettings;
 
 public class MovementInputFromOptions extends MovementInput {

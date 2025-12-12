@@ -3,8 +3,8 @@ package net.minecraft.client.gui;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.Ordering;
 import com.mojang.authlib.GameProfile;
-import axis.shiyan.wei.bluearchive.blinkfix.modules.impl.misc.HackerDetector;
-import dev.yalan.live.LiveComponent;
+import moe.ichinomiya.naven.modules.impl.misc.HackerDetector;
+//import dev.yalan.live.LiveComponent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.client.network.NetworkPlayerInfo;
@@ -42,9 +42,9 @@ public class GuiPlayerTabOverlay extends Gui {
 
         String clientAddon = "";
 
-        if (networkPlayerInfoIn.liveUser != null) {
-            clientAddon = clientAddon + LiveComponent.getLiveUserDisplayName(networkPlayerInfoIn.liveUser) + " ";
-        }
+//        if (networkPlayerInfoIn.liveUser != null) {
+//            clientAddon = clientAddon + LiveComponent.getLiveUserDisplayName(networkPlayerInfoIn.liveUser) + " ";
+//        }
 
         if (HackerDetector.isCheating(name)) {
             clientAddon = clientAddon + "\247c[Hacker]\247r ";
