@@ -6,7 +6,6 @@ import moe.ichinomiya.naven.events.api.types.EventType;
 import moe.ichinomiya.naven.events.impl.EventRender2D;
 import moe.ichinomiya.naven.events.impl.EventShader;
 import moe.ichinomiya.naven.modules.impl.render.WaterMark;
-import moe.ichinomiya.naven.ui.dynamicisland.DynamicIslandRenderer;
 import moe.ichinomiya.naven.ui.notification.Notification;
 import moe.ichinomiya.naven.ui.notification.styles.DynamicIslandNotification;
 import moe.ichinomiya.naven.ui.notification.type.NotificationType;

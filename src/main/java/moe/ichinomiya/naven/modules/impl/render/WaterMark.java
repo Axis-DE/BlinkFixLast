@@ -6,7 +6,6 @@ import moe.ichinomiya.naven.events.impl.EventShader;
 import moe.ichinomiya.naven.modules.Category;
 import moe.ichinomiya.naven.modules.Module;
 import moe.ichinomiya.naven.modules.ModuleInfo;
-import moe.ichinomiya.naven.ui.dynamicisland.DynamicIslandRenderer;
 import moe.ichinomiya.naven.ui.watermark.NavenWatermark;
 import moe.ichinomiya.naven.ui.watermark.SilenceFixWaterMark;
 import moe.ichinomiya.naven.values.ValueBuilder;
